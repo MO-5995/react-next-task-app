@@ -15,6 +15,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
       </header>
       <div>
         <div className="text-sm">{task.dueDate}</div>
+        <div className="text-sm">{task.category}</div>
         <div className="flex justify-between items-center">
           <div
             className={`mt-1 text-sm px-2 py-1 w-24 text-center text-white rounded-full shadow-sm ${

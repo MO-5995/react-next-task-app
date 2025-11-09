@@ -14,6 +14,7 @@ export const createTask = async (state: FormState, formData: FormData) => {
     description: formData.get("description") as string,
     dueDate: formData.get("dueDate") as string,
     isCompleted: false,
+    category: formData.get("category") as string,
   };
   try {
     await connectDb();
@@ -36,6 +37,7 @@ export const updateTask = async (
     description: formData.get("description") as string,
     dueDate: formData.get("dueDate") as string,
     isCompleted: Boolean(formData.get("isCompleted")),
+    category: formData.get("category") as string,
   };
   try {
     await connectDb();

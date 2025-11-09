@@ -14,6 +14,7 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
   const [description, setDescription] = useState(task.description);
   const [dueDate, setDueDate] = useState(task.dueDate);
   const [isCompleted, setIsCompleted] = useState(task.isCompleted);
+  const [category, setCategory] = useState(task.category);
 
   const updateTaskWithId = updateTask.bind(null, task._id);
   const initialState: FormState = { error: "" };
@@ -68,6 +69,24 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
             required
             className="block mt-2 py-1.5 px-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300"
           />
+        </div>
+        <div className="mt-6">
+          <label htmlFor="dueDate" className="block text-sm font-medium">
+            カテゴリー
+          </label>
+          <select
+            id="category"
+            name="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+            className="block mt-2 py-1.5 px-2 w-full rounded-md border-0 shadow-sm ring-1 ring-inset ring-gray-300"
+          >
+            <option value="STUDY">Study</option>
+            <option value="WORK">Work</option>
+            <option value="TRAVEL">Travel</option>
+            <option value="OTHER">Other</option>
+          </select>
         </div>
         <div className="mt-6 flex items-center">
           <input
