@@ -1,6 +1,7 @@
 "use client";
 
 import { createTask, FormState } from "@/actions/task";
+import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
@@ -76,6 +77,9 @@ const NewTaskForm = () => {
         >
           Create
         </button>
+        <div className="mt-8 text-center">
+          <Link href={`/`}>戻る</Link>
+        </div>
         {state.error && (
           <p className="mt-2 text-red-500 text-sm">{state.error}</p>
         )}

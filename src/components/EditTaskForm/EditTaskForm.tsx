@@ -2,6 +2,7 @@
 
 import { FormState, updateTask } from "@/actions/task";
 import { TaskDocument } from "@/models/task";
+import Link from "next/link";
 import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 
@@ -13,7 +14,6 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [dueDate, setDueDate] = useState(task.dueDate);
-  const [isCompleted, setIsCompleted] = useState(task.isCompleted);
   const [category, setCategory] = useState(task.category);
 
   const updateTaskWithId = updateTask.bind(null, task._id);
@@ -88,19 +88,6 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
             <option value="OTHER">Other</option>
           </select>
         </div>
-        <div className="mt-6 flex items-center">
-          <input
-            type="checkbox"
-            id="isCompleted"
-            name="isCompleted"
-            className="mr-2 w-4 h-4"
-            checked={isCompleted}
-            onChange={(e) => setIsCompleted(e.target.checked)}
-          />
-          <label htmlFor="isCompleted" className="text-sm">
-            タスクを完了にする
-          </label>
-        </div>
         <button
           type="submit"
           disabled={isPending}
@@ -108,6 +95,9 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
         >
           Edit
         </button>
+        <div className="mt-8 text-center">
+          <Link href={`/`}>戻る</Link>
+        </div>
         {state.error !== "" && (
           <p className="mt-2 text-red-500 text-sm">{state.error}</p>
         )}

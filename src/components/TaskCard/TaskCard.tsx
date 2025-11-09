@@ -1,6 +1,7 @@
 import { TaskDocument } from "@/models/task";
 import TaskDeleteButton from "./TaskDeleteButton/TaskDeleteButton";
 import TaskEditButton from "./TaskEditButton/TaskEditButton";
+import TaskDoneButton from "./TaskDoneButton/TaskDoneButton";
 
 interface TaskCardProps {
   task: TaskDocument;
@@ -24,6 +25,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
             {task.category}
           </div>
           <div className="flex gap-4">
+            <TaskDoneButton status={task.isCompleted} id={task._id} />
             <TaskEditButton id={task._id} />
             <TaskDeleteButton id={task._id} />
           </div>

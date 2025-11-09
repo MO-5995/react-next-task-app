@@ -61,3 +61,20 @@ export const deleteTask = async (id: string, state: FormState) => {
 
   redirect("/");
 };
+
+export const changeStatus = async (
+  id: string,
+  state: FormState,
+  formData: FormData
+) => {
+  const isCompleted = formData.get("isCompleted") === "on"; // checkboxは "on" が送られる
+  try {
+    await connectDb();
+    await TaskModel.updateOne({ _id: id }, { $set: { isCompleted } });
+  } catch (error) {
+    state.error = "タスクの更新に失敗しました";
+    return state;
+  }
+
+  redirect("/");
+};
