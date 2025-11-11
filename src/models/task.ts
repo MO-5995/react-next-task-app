@@ -6,6 +6,7 @@ export interface Task {
   dueDate: string;
   isCompleted: boolean;
   category: string;
+  order: number;
 }
 
 export interface TaskDocument extends Task, Document {
@@ -36,6 +37,7 @@ const taskSchema = new mongoose.Schema<TaskDocument>(
       enum: ["STUDY", "WORK", "TRAVEL", "OTHER"],
       default: "OTHER",
     },
+    order: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

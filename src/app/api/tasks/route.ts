@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     await connectDb();
-    const allTasks: TaskDocument[] = await TaskModel.find();
+    const allTasks: TaskDocument[] = await TaskModel.find().sort({ order: 1 });
 
     return NextResponse.json({ message: "タスク取得成功", tasks: allTasks });
   } catch (error) {
