@@ -9,12 +9,15 @@ export interface FormState {
 }
 
 export const createTask = async (state: FormState, formData: FormData) => {
+  const count = await TaskModel.countDocuments();
+
   const newTask: Task = {
     title: formData.get("title") as string,
     description: formData.get("description") as string,
     dueDate: formData.get("dueDate") as string,
     isCompleted: false,
     category: formData.get("category") as string,
+    order: count,
   };
   try {
     await connectDb();

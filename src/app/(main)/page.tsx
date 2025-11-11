@@ -1,11 +1,12 @@
-import TaskCard from "@/components/TaskCard/TaskCard";
+import TaskCardList from "@/components/TaskCardList/TaskCardList";
 import { TaskDocument } from "@/models/task";
-import { log } from "console";
 import Link from "next/link";
 import { MdAddTask } from "react-icons/md";
 
 const getAllTasks = async (): Promise<TaskDocument[]> => {
-  const response = await fetch(`${process.env.API_URL}/tasks`);
+  const response = await fetch(`${process.env.API_URL}/tasks`, {
+    cache: "no-store",
+  });
   if (response.status !== 200) {
     throw new Error();
   }
@@ -29,10 +30,9 @@ export default async function MainPage() {
           <div>Add Task</div>
         </Link>
       </header>
-      <div className="mt-8 flex flex-wrap gap-4">
-        {allTasks.map((task) => (
-          <TaskCard key={task._id} task={task} />
-        ))}
+
+      <div className="mt-8">
+        <TaskCardList tasks={allTasks} />
       </div>
     </div>
   );
