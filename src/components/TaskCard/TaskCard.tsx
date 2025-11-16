@@ -8,11 +8,16 @@ interface TaskCardProps {
 }
 
 const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+  const due = new Date(task.dueDate);
+  const now = new Date();
+
+  const isCompleted = task.isCompleted;
+  const isExpired = !isCompleted && due < now;
+
   return (
     <div
-      className={`w-64 h-52 p-4 rounded-md shadow-md flex flex-col justify-between ${
-        task.isCompleted ? "bg-gray-200" : "bg-white"
-      }`}
+      className={`w-64 h-52 p-4 rounded-md shadow-md flex flex-col justify-between 
+        ${isCompleted ? "bg-gray-200" : isExpired ? "bg-red-300" : "bg-white"}`}
     >
       <header>
         <h1 className="text-lg font-semibold">{task.title}</h1>
